@@ -15,17 +15,21 @@
         </div>
       </section>
 
+      <section v-if="questions.length">
+        <h2>Questions (So Far)</h2>
+      </section>
+
       <section>
         <h2>Add Some Questions</h2>
         <p class="lead">Polls need questions, obviously.</p>
 
-        <new-question></new-question>
+        <new-question v-on:addQuestion="addQuestion"></new-question>
       </section>
 
       <button type="submit" class="btn btn-primary btn-lg">
         Create Poll
       </button>
-      
+
     </form>
 
   </div>
@@ -35,6 +39,19 @@
 import NewQuestion from 'components/subcomponents/NewQuestion.vue';
 export default {
   name: "Create",
-  components: { NewQuestion }
+  components: { NewQuestion },
+  data: function() {
+    return {
+      questions: []
+    }
+  },
+
+  methods: {
+
+    addQuestion: function(payload) {
+      this.questions.push(payload);
+    }
+
+  }
 }
 </script>
