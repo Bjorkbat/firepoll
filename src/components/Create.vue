@@ -4,13 +4,13 @@
     <h1>Create A Poll</h1>
     <hr />
 
-    <form>
+    <form v-on:submit.prevent="createPoll">
 
       <section>
         <div class="form-group">
           <label class="h2">Poll Name</label>
           <p class="lead">A good poll deserves a good name.  Give it one here.</p>
-          <input type="text" class="form-control underlined big"
+          <input type="text" class="form-control underlined big" v-model="name"
             placeholder="Give your poll a fancy name or title here">
         </div>
       </section>
@@ -37,6 +37,7 @@
 </template>
 
 <script>
+import md5 from 'md5';
 import NewQuestion from 'components/subcomponents/NewQuestion.vue';
 import Question from 'components/subcomponents/Question.vue';
 export default {
@@ -44,6 +45,7 @@ export default {
   components: { NewQuestion, Question },
   data: function() {
     return {
+      name: '',
       questions: []
     }
   },
@@ -52,6 +54,16 @@ export default {
 
     addQuestion: function(payload) {
       this.questions.push(payload);
+    },
+
+    createPoll: function() {
+
+      var pollID = md5(this.name + Date.now());
+      firebase.database().ref('polls/' + pollID).set({
+        name: this.name,
+        questions: this.questions
+      });
+
     }
 
   }
