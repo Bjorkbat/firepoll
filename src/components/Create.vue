@@ -17,6 +17,7 @@
 
       <section v-if="questions.length">
         <h2>Questions (So Far)</h2>
+        <question v-for="question in questions" v-bind:question="question"></question>
       </section>
 
       <section>
@@ -37,9 +38,10 @@
 
 <script>
 import NewQuestion from 'components/subcomponents/NewQuestion.vue';
+import Question from 'components/subcomponents/Question.vue';
 export default {
   name: "Create",
-  components: { NewQuestion },
+  components: { NewQuestion, Question },
   data: function() {
     return {
       questions: []
