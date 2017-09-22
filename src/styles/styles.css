@@ -1,0 +1,55 @@
+body, html {
+  font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+#app {
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+  font-weight: bold;
+}
+
+a {
+  color: #42b983;
+}
+
+form {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+form input.form-control.underlined {
+  border: none;
+  border-bottom: 1px solid #2c3e50;
+  border-radius: 0;
+}
+
+form input.big {
+  font-size: 32px;
+  text-align: center;
+  font-weight: bold;
+}
+
+form input.medium {
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+}
+
+section {
+  border: 2px dashed #CCC;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 25px auto;
+}
