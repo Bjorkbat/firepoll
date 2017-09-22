@@ -5,7 +5,7 @@
 
       <label class="h4">Question Name</label>
       <input type="text" class="form-control underlined medium"
-        placeholder="What's your favorite color?">
+        placeholder="Ex: what's your favorite color?">
 
     </div>
 
@@ -31,7 +31,10 @@
 
     <div class="form-group">
       <label class="h5">Responses</label>
-      <new-response></new-response>
+      <ul class="list-unstyled">
+        <li v-for="response in responses">{{response}}</li>
+      </ul>
+      <new-response v-on:addResponse="addResponse"></new-response>
     </div>
 
     <button type="button" class="btn btn-default">
@@ -44,7 +47,20 @@
 <script>
 import NewResponse from './NewResponse.vue';
 export default {
-  components: { NewResponse }
+  components: { NewResponse },
+
+  data: function() {
+    return {
+      responses: []
+    }
+  },
+
+  methods: {
+    addResponse: function(response) {
+      this.responses.push(response);
+    }
+  }
+
 }
 </script>
 
