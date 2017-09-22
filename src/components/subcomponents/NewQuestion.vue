@@ -30,7 +30,8 @@
     </div>
 
     <div class="form-group">
-      <label class="h5">Questions</label>
+      <label class="h5">Responses</label>
+      <new-response></new-response>
     </div>
 
     <button type="button" class="btn btn-default">
@@ -39,6 +40,13 @@
 
   </div>
 </template>
+
+<script>
+import NewResponse from './NewResponse.vue';
+export default {
+  components: { NewResponse }
+}
+</script>
 
 <style scoped>
 .new-question {
