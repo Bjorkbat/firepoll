@@ -4,7 +4,7 @@
     <div class="form-group">
 
       <label class="h4">Question Name</label>
-      <input type="text" class="form-control underlined medium"
+      <input type="text" class="form-control underlined medium" v-model="question"
         placeholder="Ex: what's your favorite color?">
 
     </div>
@@ -15,13 +15,13 @@
       <div>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" value="option1">
+            <input class="form-check-input" type="radio" v-model="multiple" value="false">
             Single Choice
           </label>
         </div>
         <div class="form-check form-check-inline">
           <label class="form-check-label">
-            <input class="form-check-input" type="radio" value="option2">
+            <input class="form-check-input" type="radio" v-model="multiple" value="true">
             Multiple Choice
           </label>
         </div>
@@ -37,7 +37,7 @@
       <new-response v-on:addResponse="addResponse"></new-response>
     </div>
 
-    <button type="button" class="btn btn-default">
+    <button type="button" class="btn btn-default" v-on:click="addQuestion">
       Add Question
     </button>
 
@@ -51,14 +51,30 @@ export default {
 
   data: function() {
     return {
+      question: '',
+      multiple: false,
       responses: []
     }
   },
 
   methods: {
+
+    addQuestion: function() {
+      var payload = {
+        question: this.question,
+        multiple: this.multiple,
+        responses: this.responses
+      };
+      this.$emit('addQuestion', payload);
+
+      this.question = '';
+      this.responses = [];
+    },
+
     addResponse: function(response) {
       this.responses.push(response);
     }
+
   }
 
 }

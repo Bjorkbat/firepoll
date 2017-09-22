@@ -20,6 +20,7 @@ export default {
   methods: {
     addResponse: function() {
       this.$emit('addResponse', this.response);
+      this.response = '';
     }
   }
 }
