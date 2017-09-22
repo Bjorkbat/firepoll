@@ -12,6 +12,20 @@
   </head>
   <body>
     <div id="app"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/4.4.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyCmq2MAgKSk2p6hgVr0j0EKFr6Iz0_F0A8",
+        authDomain: "firepoll-457f5.firebaseapp.com",
+        databaseURL: "https://firepoll-457f5.firebaseio.com",
+        projectId: "firepoll-457f5",
+        storageBucket: "firepoll-457f5.appspot.com",
+        messagingSenderId: "839215072096"
+      };
+      firebase.initializeApp(config);
+    </script>
     <script src="/dist/build.js"></script>
   </body>
 </html>
