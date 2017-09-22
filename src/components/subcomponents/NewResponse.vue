@@ -1,11 +1,29 @@
 <template>
   <div>
-    <input type="text" class="form-control" placeholder="Enter response here">
-    <button class="btn btn-default">
+    <input type="text" class="form-control" v-model="response"
+      placeholder="Enter response here">
+    <button type="button" class="btn btn-default" v-on:click="addResponse">
       Add Another
     </button>
   </div>
 </template>
+
+<script>
+export default {
+
+  data: function() {
+    return {
+      response: ''
+    }
+  },
+
+  methods: {
+    addResponse: function() {
+      this.$emit('addResponse', this.response);
+    }
+  }
+}
+</script>
 
 <style scoped>
 div {
