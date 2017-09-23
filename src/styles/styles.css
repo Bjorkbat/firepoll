@@ -4,6 +4,7 @@ body, html {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  background-color: #FFF2B9;
 }
 
 #app {
@@ -64,10 +65,14 @@ section {
 }
 
 .btn-default {
-  background-color: #FCFCFC;
+  background-color: #FFFAE7;
   border: 1px solid #CCC;
 }
 
 .btn-default:hover {
-  background-color: #EFEFEF;
+  background-color: #FFF6D0;
+}
+
+.form-control {
+  background-color: #FFFAE7;
 }
