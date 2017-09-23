@@ -2,14 +2,41 @@
   <div>
     <h5>{{question.question}}</h5>
     <ul class="list-unstyled">
-      <li v-for="response in question.responses" class="h6">{{response}}</li>
+      <li class="h6" v-for="response in question.responses"
+        v-on:click="selectAnswer(response)"
+        v-bind:class="{selected: response == answer}">
+        {{response}}
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['question']
+  props: ['question', 'readonly'],
+  data: function() {
+    return {
+      answer: ''
+    }
+  },
+
+  methods: {
+
+    selectAnswer: function(response) {
+
+      if (this.readonly) {
+        return;
+      }
+
+      var payload = {
+        question: this.question,
+        answer: response
+      }
+      this.answer = response;
+      this.$emit('selectAnswer', payload);
+    }
+
+  }
 }
 </script>
 
@@ -29,11 +56,15 @@ ul {
 }
 
 li {
-  background-color: #FFE577;
+  background-color: #FFF2B9;
   border: 1px solid #FFFAE7;
   border-radius: 4px;
   box-shadow: 1px 1px 1px #CCC;
   padding: 10px;
+}
+
+li.selected {
+  background-color: #FFE577;
 }
 
 </style>
