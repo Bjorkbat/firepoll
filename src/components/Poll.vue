@@ -34,17 +34,26 @@ export default {
 
     selectAnswer: function(payload) {
 
+      var multipleChoice = this.answers[j].questionIndex == i &&
+        this.answers[j].answer == payload.answer;
+      var singleChoice = this.answers[j].questionIndex == i &&
+        !payload.question.multiple;
+
       // Figure out the index of the question first
       for(var i = 0; i < this.questions.length; i ++) {
 
         if(this.questions[i] == payload.question) {
 
-          // Make sure the answer doesn't already exist
+          // If it's single-choice, then make sure that we change the original
+          // answer to the new one.  Otherwise, just make sure we don't have
+          // duplicate answers
           for(var j = 0; j < this.answers.length; j ++) {
-            if (this.answers[j].questionIndex == i) {
-              this.answers.splice(i, 1);
+
+            if (multipleChoice || singleChoice) {
+              this.answers.splice(j, 1);
               break;
             }
+
           }
 
           this.answers.push({

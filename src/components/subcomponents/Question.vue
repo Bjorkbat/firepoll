@@ -16,7 +16,7 @@ export default {
   props: ['question', 'readonly'],
   data: function() {
     return {
-      answer: ''
+      answer: []
     }
   },
 
@@ -24,15 +24,37 @@ export default {
 
     selectAnswer: function(response) {
 
+      // If this is readonly, just return
       if (this.readonly) {
         return;
       }
 
+      // Go ahead and put together the payload
       var payload = {
         question: this.question,
         answer: response
       }
-      this.answer = response;
+
+      // Next, we're going to set the answer prop to the response, or add a
+      // new response to the answers, depending on if this is multiple choice
+      if (!this.question.multiple) {
+
+        this.answer = response;
+
+      } else {
+
+        for(var i = 0; i < this.answer.length; i ++) {
+          if (this.answer[i] == response) {
+            this.answer.splice(i, 1);
+            break;
+          }
+        }
+
+        this.answer.push(response);
+
+      }
+
+      // Finally, emit the payload
       this.$emit('selectAnswer', payload);
     }
 
