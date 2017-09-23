@@ -17,7 +17,9 @@
 
       <section v-if="questions.length">
         <h2>Questions (So Far)</h2>
-        <question v-for="question in questions" v-bind:question="question"></question>
+        <question v-for="question in questions"
+          v-bind:question="question"
+          v-bind:readonly="true"></question>
       </section>
 
       <section>
